@@ -151,10 +151,9 @@
 const params = new URLSearchParams(window.location.search);
 const adId = params.get('ad') || '1';
 const fmt = params.get('fmt') || '1x1';
-const DB = '/Users/jeffersonrichardson/LOL Entertainment Dropbox/1 - TM';
-const PHL = `${DB}/05 - PHOTO & VIDEO/03 TM PHILLY/Philadelphia - October 2025`;
-const SEL = `${DB}/05 - PHOTO & VIDEO/TIME MISSION SELECT`;
-const OPS = `${DB}/05 - PHOTO & VIDEO/04 TM Ops Photos/00 - TOP 15 Pictures`;
+const PHL = 'images';
+const SEL = 'images';
+const OPS = 'images';
 
 const ads = {
   '1-1x1': { bg: `${PHL}/_Time-Mission_0001.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.85) 70%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline">YOUR CREW.<br><span class="text-gradient-purple">YOUR RULES.</span></div><div class="ad-subtext">25+ challenge rooms. Choose your own adventure.<br>Who's really the smartest in your group?</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div></div>` },
