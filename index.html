@@ -3,206 +3,782 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Time Mission — Meta Ad Creative (Feb 2026)</title>
+<title>Time Mission — Meta Ad Creative (10 Sets)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --mission-black: #1C1C1C;
+    --time-white: #F3F1EE;
+    --pink: #FE3D82;
+    --purple: #9D5CED;
+    --orange-light: #F9A41A;
+    --orange-dark: #EF4B23;
+    --blue-dark: #1F4ABA;
+    --blue-light: #028BBF;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #1C1C1C; color: #F3F1EE; font-family: 'Inter', sans-serif; }
-  .header {
-    padding: 60px 40px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .header h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .header p { color: #999; font-size: 16px; margin-bottom: 4px; }
-  .header .brand-bar {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-  }
-  .brand-bar span {
-    display: inline-block;
-    width: 60px;
-    height: 8px;
-    border-radius: 4px;
-  }
-  .ad-set {
-    max-width: 1400px;
-    margin: 0 auto;
+
+  body {
+    background: #0a0a0a;
+    color: var(--time-white);
+    font-family: 'Inter', sans-serif;
     padding: 40px;
-    border-top: 1px solid #333;
   }
-  .ad-set h2 {
+
+  h1.page-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .ad-set {
+    margin-bottom: 80px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 60px;
+  }
+
+  .ad-set-header {
+    margin-bottom: 30px;
+  }
+
+  .ad-set-number {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+
+  .ad-set-title {
     font-family: 'Rajdhani', sans-serif;
     font-size: 28px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 6px;
+    letter-spacing: 2px;
   }
-  .ad-set .meta {
-    color: #777;
+
+  .ad-set-meta {
     font-size: 13px;
-    margin-bottom: 24px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.6;
   }
-  .ad-set .meta span {
-    display: inline-block;
-    padding: 2px 10px;
-    border: 1px solid #444;
-    border-radius: 12px;
-    margin-right: 8px;
+
+  .ad-set-meta span {
+    color: #999;
+    font-weight: 600;
   }
+
   .ad-pair {
     display: flex;
-    gap: 32px;
+    gap: 40px;
     align-items: flex-start;
   }
-  .ad-pair img {
-    border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-  }
-  .ad-pair .feed img { width: 400px; height: 400px; object-fit: cover; }
-  .ad-pair .story img { width: 225px; height: 400px; object-fit: cover; }
-  .ad-pair .label {
+
+  .ad-label {
     font-size: 11px;
-    color: #666;
-    text-align: center;
-    margin-top: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .footer {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 60px 40px;
-    border-top: 1px solid #333;
     color: #555;
-    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* ========== AD FRAMES ========== */
+  .ad-frame-1x1 {
+    width: 540px;
+    height: 540px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .ad-frame-9x16 {
+    width: 337px;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ========== SHARED AD STYLES ========== */
+  .ad-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .ad-overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .ad-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    z-index: 2;
+  }
+
+  .ad-content-center {
+    justify-content: center;
+    align-items: center;
     text-align: center;
   }
-  @media (max-width: 768px) {
-    .ad-pair { flex-direction: column; align-items: center; }
-    .ad-pair .feed img { width: 100%; max-width: 400px; height: auto; }
-    .ad-pair .story img { width: 100%; max-width: 225px; height: auto; }
-    .header { padding: 40px 20px 20px; }
-    .ad-set { padding: 30px 20px; }
+
+  .ad-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: white;
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    z-index: 3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .ad-logo::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: white;
+    margin-top: 2px;
+  }
+
+  .ad-headline {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.95;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+
+  .ad-subtext {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 12px;
+    opacity: 0.9;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .ad-cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    text-shadow: none;
+    align-self: flex-start;
+  }
+
+  .ad-cta-center {
+    align-self: center;
+  }
+
+  .ad-badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 3;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* Gradient text */
+  .text-gradient-purple {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-orange {
+    background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Copy section under ads */
+  .ad-copy-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #111;
+    border-radius: 8px;
+    max-width: 540px;
+  }
+
+  .ad-copy-label {
+    font-size: 10px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .ad-copy-text {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  .ad-copy-headline {
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    margin-top: 8px;
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>Time Mission</h1>
-  <p>Meta Ad Creative — February 2026</p>
-  <p>10 Ad Sets &middot; 20 Total Ads &middot; Feed (1:1) + Stories (9:16)</p>
-  <div class="brand-bar">
-    <span style="background: linear-gradient(135deg, #FE3D82, #9D5CED)"></span>
-    <span style="background: linear-gradient(135deg, #F9A41A, #EF4B23)"></span>
-    <span style="background: linear-gradient(135deg, #1F4ABA, #028BBF)"></span>
-    <span style="background: #1C1C1C; border: 1px solid #444"></span>
-    <span style="background: #F3F1EE"></span>
-  </div>
-</div>
+<h1 class="page-title">Time Mission — Meta Ad Creative</h1>
+<p class="page-subtitle">10 Ad Sets &bull; 1:1 Feed + 9:16 Stories &bull; February 2026</p>
 
+<!-- ============================================================ -->
+<!-- AD SET 1: WEEKEND PLANNERS — SQUAD -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>01 — Squad Night</h2>
-  <div class="meta"><span>Friends 21-38</span><span>Super Purple</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 01</div>
+    <div class="ad-set-title">Weekend Planners — Squad Night</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Friends 21-38, escape room/board game/Topgolf interests<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad01-1x1.png" alt="Squad Night 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad01-9x16.png" alt="Squad Night 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/_Time-Mission_0001.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.85) 70%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 52px; color: white;">YOUR CREW.<br><span class="text-gradient-purple">YOUR RULES.</span></div>
+          <div class="ad-subtext">25+ challenge rooms. Choose your own adventure.<br>Who's really the smartest in your group?</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Your group chat has been talking. Time to actually do something. 💥<br><br>Time Mission has 25+ challenge rooms where YOU choose the adventure. Test your crew's teamwork, brains, and speed.<br><br>Spots fill fast — book your session now.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Your Crew. Your Rules. Your Mission.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/_Time-Mission_0020.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.85) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge">25+ Rooms</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 44px; color: white;">YOUR<br>CREW.<br><span class="text-gradient-purple">YOUR<br>RULES.</span></div>
+          <div class="ad-subtext">Choose your own adventure.<br>Who's the smartest in your group?</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 2: WEEKEND PLANNERS — DATE NIGHT -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>02 — Date Night</h2>
-  <div class="meta"><span>Couples 21-40</span><span>Sonic Orange</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 02</div>
+    <div class="ad-set-title">Weekend Planners — Date Night</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Couples 21-40, relationship status: in a relationship, date night interests<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad02-1x1.png" alt="Date Night 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad02-9x16.png" alt="Date Night 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/_Time-Mission_0040.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.9) 65%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 56px; color: white;">DATE NIGHT,<br><span class="text-gradient-orange">UPGRADED.</span></div>
+          <div class="ad-subtext">Skip the same old dinner. Challenge each other<br>through 25+ interactive rooms instead.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Book Your Date</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Tired of the same dinner-and-a-movie combo? 🎯<br><br>Time Mission is the date night you'll actually remember. Choose your own adventure through 25+ challenge rooms — just the two of you against the clock.<br><br>Way more fun than arguing over where to eat.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Date Night, Upgraded. Book Now.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/_Time-Mission_0010.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.3) 0%, rgba(28,28,28,0.0) 40%, rgba(28,28,28,0.9) 65%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 42px; color: white;">DATE<br>NIGHT,<br><span class="text-gradient-orange">UPGRADED.</span></div>
+          <div class="ad-subtext">Skip dinner. Challenge each other<br>through 25+ rooms.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Book Your Date</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 3: FAMILY — GAME NIGHT -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>03 — Family Game Night</h2>
-  <div class="meta"><span>Parents 30-50</span><span>Super Purple</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 03</div>
+    <div class="ad-set-title">Family Activity Seekers — Game Night</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Parents 30-50, children 6-17, family activity interests<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad03-1x1.png" alt="Family Game Night 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad03-9x16.png" alt="Family Game Night 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/Time-Mission_Big-Bang.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.0) 0%, rgba(28,28,28,0.85) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge" style="background: linear-gradient(135deg, var(--pink), var(--purple)); border: none;">Family Fun</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 56px; color: white;">YOUR NEXT<br><span class="text-gradient-purple">GAME NIGHT</span></div>
+          <div class="ad-subtext">25+ challenge rooms the whole family will love.<br>No screens. No sitting still. All adventure.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Family Session</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">If you hear "I'm bored" one more time... 😅<br><br>Time Mission is the family activity everyone actually enjoys. 25+ interactive challenge rooms where you choose your own adventure — kids AND adults competing together.<br><br>One ticket. Hours of fun. Zero screens.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Game Night for the Whole Family</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Time-Mission_Control-Room.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.9) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge" style="background: linear-gradient(135deg, var(--pink), var(--purple)); border: none;">Family Fun</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 40px; color: white;">YOUR<br>NEXT<br><span class="text-gradient-purple">GAME<br>NIGHT</span></div>
+          <div class="ad-subtext">25+ rooms. No screens.<br>All adventure.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 4: FAMILY — SPRING BREAK -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>04 — Spring Break</h2>
-  <div class="meta"><span>Parents (Seasonal)</span><span>Speed Blue</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 04</div>
+    <div class="ad-set-title">Family — Spring Break / School's Out</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Parents 28-50, school-age children, seasonal targeting (March-April)<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad04-1x1.png" alt="Spring Break 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad04-9x16.png" alt="Spring Break 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/Time-Mission_Jungle-Temple.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.0) 0%, rgba(28,28,28,0.85) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 48px; color: white;">SPRING BREAK<br><span class="text-gradient-blue">SORTED.</span></div>
+          <div class="ad-subtext">25+ interactive rooms. No screens required.<br>The adventure they'll talk about all semester.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Book Spring Break</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Spring break is coming. Don't let "I'm bored" win. 🏝️<br><br>Time Mission keeps the whole family engaged with 25+ challenge rooms — puzzles, adventures, and choose-your-own-path gameplay everyone will love.<br><br>Book now before sessions fill up.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Spring Break Sorted. No Screens Required.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Jungle_Temple.JPG');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 35%, rgba(28,28,28,0.9) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 44px; color: white;">SPRING<br>BREAK<br><span class="text-gradient-blue">SORTED.</span></div>
+          <div class="ad-subtext">No screens. All adventure.<br>25+ rooms await.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Book Now</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 5: CORPORATE TEAM BUILDING -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>05 — Corporate Team Build</h2>
-  <div class="meta"><span>Managers/HR 28-55</span><span>Speed Blue</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 05</div>
+    <div class="ad-set-title">Corporate — Team Building</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Managers, HR, Team Leads 28-55, corporate event interests, weekday delivery<br>
+      <span>Objective:</span> Lead Gen &bull; <span>CTA:</span> Plan Your Event
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad05-1x1.png" alt="Corporate Team Build 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad05-9x16.png" alt="Corporate Team Build 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1" style="background: var(--mission-black);">
+        <div class="ad-bg" style="background-image: url('images/Server_Heist.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.3) 0%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div style="font-family: 'Inter'; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Corporate Events</div>
+          <div class="ad-headline" style="font-size: 42px; color: white;">THE TEAM OUTING<br>THEY'LL ACTUALLY<br><span class="text-gradient-blue">TALK ABOUT.</span></div>
+          <div class="ad-subtext">25+ challenge rooms. 2-50+ people.<br>Build real teamwork in 90 minutes. No PowerPoint required.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Plan Your Event</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Another trust-fall workshop? Your team deserves better. 🎯<br><br>Time Mission is an interactive gaming experience where your team competes through 25+ challenge rooms — puzzles, physical challenges, and choose-your-own-adventure gameplay.<br><br>Groups of 2-50+. Weekday availability. We handle the rest.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Team Building That Actually Builds Teams</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Control_Room.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.3) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge">Groups 2-50+</div>
+        <div class="ad-content">
+          <div style="font-family: 'Inter'; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); margin-bottom: 6px;">Corporate Events</div>
+          <div class="ad-headline" style="font-size: 36px; color: white;">THE OUTING<br>THEY'LL<br><span class="text-gradient-blue">ACTUALLY<br>TALK ABOUT.</span></div>
+          <div class="ad-subtext">Real teamwork. 90 minutes.<br>No PowerPoint required.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Plan Your Event</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 6: CELEBRATION — BIRTHDAY -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>06 — Birthday Party</h2>
-  <div class="meta"><span>Celebration Planners 21-45</span><span>Super Purple</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 06</div>
+    <div class="ad-set-title">Celebration Planners — Birthday Party</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Ages 21-45, upcoming birthday behavior, party planning interests<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Plan Your Party
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad06-1x1.png" alt="Birthday Party 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad06-9x16.png" alt="Birthday Party 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/_Time-Mission_0030.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.0) 0%, rgba(28,28,28,0.88) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge" style="background: linear-gradient(135deg, var(--pink), var(--purple)); border: none;">🎂 Parties</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 44px; color: white;">THE BIRTHDAY<br>THEY'LL<br><span class="text-gradient-purple">NEVER FORGET.</span></div>
+          <div class="ad-subtext">Skip the restaurant. Throw a party where everyone<br>competes through 25+ challenge rooms.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Plan Your Party</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Birthday party. Planned in 5 minutes. Talked about for months. 🎉<br><br>Time Mission makes every celebration unforgettable — 25+ challenge rooms where your group competes, laughs, and discovers who's really the smartest.<br><br>Group packages available. Weekend slots filling fast.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">The Birthday They'll Never Forget</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Time-Mission_Persian-0Palace.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge" style="background: linear-gradient(135deg, var(--pink), var(--purple)); border: none;">🎂 Parties</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 38px; color: white;">THE<br>BIRTHDAY<br>THEY'LL<br><span class="text-gradient-purple">NEVER<br>FORGET.</span></div>
+          <div class="ad-subtext">Group packages available.<br>Slots filling fast.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Plan Your Party</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 7: THRILL SEEKERS — CHALLENGE -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>07 — Think You're Smart</h2>
-  <div class="meta"><span>Thrill Seekers 18-35</span><span>Sonic Orange</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 07</div>
+    <div class="ad-set-title">Thrill Seekers — The Challenge</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Experience hunters 18-35, gaming/adventure/competitive interests<br>
+      <span>Objective:</span> Traffic &bull; <span>CTA:</span> Accept the Challenge
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad07-1x1.png" alt="Think You're Smart 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad07-9x16.png" alt="Think You're Smart 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/1033_Magma_Mayhem1.jpeg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.0) 0%, rgba(28,28,28,0.88) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 58px; color: white;">THINK YOU'RE<br><span class="text-gradient-orange">SMART?</span></div>
+          <div class="ad-subtext">25 rooms say otherwise.<br>Only 12% of groups beat them all. Will yours?</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Accept the Challenge</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">Think you're smart? Prove it. 🧠<br><br>25+ rooms. Choose your own adventure. Beat the clock. Every challenge tests your logic, speed, and teamwork in ways you've never experienced.<br><br>Only 12% of groups conquer every room. Will yours?</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">25 Rooms. Only 12% Beat Them All.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Magma_Mayhem.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 50px; color: white;">THINK<br>YOU'RE<br><span class="text-gradient-orange">SMART?</span></div>
+          <div class="ad-subtext">25 rooms say otherwise.<br>12% beat them all.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Accept the Challenge</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 8: THRILL SEEKERS — CHOOSE YOUR PATH -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>08 — Something New</h2>
-  <div class="meta"><span>Novelty Seekers 18-35</span><span>Super Purple</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 08</div>
+    <div class="ad-set-title">Thrill Seekers — Choose Your Path</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Novelty seekers 18-35, VR/escape room/mystery interests, new local experience seekers<br>
+      <span>Objective:</span> Traffic &bull; <span>CTA:</span> Choose Your Adventure
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad08-1x1.png" alt="Something New 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad08-9x16.png" alt="Something New 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/Glitch_Matrix.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.88) 60%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 48px; color: white;">NOT AN ESCAPE ROOM.<br><span class="text-gradient-purple">SOMETHING NEW.</span></div>
+          <div class="ad-subtext">Choose your own adventure through 25+ rooms.<br>Every path is different. Every visit is unique.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Choose Your Adventure</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">This isn't an escape room. This isn't VR. This is something new. 🌀<br><br>Time Mission is 25+ interactive challenge rooms where YOU choose the path. Physical challenges, brain teasers, and puzzles — every visit is different.<br><br>You've never played anything like this.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Not Escape Rooms. Something Entirely New.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Lovecraft_Circle.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 36px; color: white;">NOT AN<br>ESCAPE ROOM.<br><span class="text-gradient-purple">SOMETHING<br>NEW.</span></div>
+          <div class="ad-subtext">25+ rooms. Choose your path.<br>Every visit is different.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Choose Your Adventure</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 9: RETARGETING — SOCIAL PROOF -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>09 — Social Proof (Retargeting)</h2>
-  <div class="meta"><span>Site Visitors / Video Viewers</span><span>Black + Orange CTA</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 09</div>
+    <div class="ad-set-title">Retargeting — Social Proof + Urgency</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Website visitors (7-30 days), video viewers (75%+), IG/FB engagers<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad09-1x1.png" alt="Social Proof 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad09-9x16.png" alt="Social Proof 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1" style="background: var(--mission-black);">
+        <div class="ad-overlay" style="background: var(--mission-black);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content ad-content-center" style="padding: 60px 48px;">
+          <div style="font-size: 64px; margin-bottom: 16px;">⭐⭐⭐⭐⭐</div>
+          <div class="ad-headline" style="font-size: 56px; color: white; text-align: center; text-shadow: none;">4.8 STARS</div>
+          <div class="ad-headline text-gradient-orange" style="font-size: 32px; text-align: center; margin-top: 4px; text-shadow: none;">10,000+ PLAYERS</div>
+          <div style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--pink), var(--purple)); margin: 24px auto;"></div>
+          <div class="ad-subtext" style="text-align: center; font-size: 15px; text-shadow: none; color: rgba(255,255,255,0.7);">"Best thing we've done all year."<br><span style="font-size: 12px; color: rgba(255,255,255,0.4);">— Verified Review</span></div>
+          <div class="ad-cta ad-cta-center" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin-top: 28px;">Book Now — Limited Spots</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">You looked. You didn't book. We get it — you were busy. 😏<br><br>But this weekend's sessions are filling up fast. 10,000+ people have already experienced Time Mission. Join them.<br><br>4.8 stars. Limited spots remaining.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">Still Thinking About It? Sessions Filling Fast.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16" style="background: var(--mission-black);">
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content ad-content-center" style="padding: 40px 28px;">
+          <div style="font-size: 48px; margin-bottom: 12px;">⭐⭐⭐⭐⭐</div>
+          <div class="ad-headline" style="font-size: 48px; color: white; text-align: center; text-shadow: none;">4.8<br>STARS</div>
+          <div class="ad-headline text-gradient-orange" style="font-size: 24px; text-align: center; margin-top: 8px; text-shadow: none;">10,000+ PLAYERS</div>
+          <div style="width: 50px; height: 3px; background: linear-gradient(90deg, var(--pink), var(--purple)); margin: 20px auto;"></div>
+          <div class="ad-subtext" style="text-align: center; font-size: 14px; text-shadow: none; color: rgba(255,255,255,0.7);">"Best thing we've<br>done all year."</div>
+          <div class="ad-cta ad-cta-center" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin-top: 24px; font-size: 12px; padding: 10px 20px;">Book Now</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- AD SET 10: BROAD — GRAND AWARENESS -->
+<!-- ============================================================ -->
 <div class="ad-set">
-  <h2>10 — Broad Awareness</h2>
-  <div class="meta"><span>Advantage+ 18-55</span><span>Super Purple</span></div>
+  <div class="ad-set-header">
+    <div class="ad-set-number">Ad Set 10</div>
+    <div class="ad-set-title">Broad Awareness — Step Into the Mission</div>
+    <div class="ad-set-meta">
+      <span>Audience:</span> Broad / Advantage+ targeting, 18-55, 25mi radius from venue<br>
+      <span>Objective:</span> Conversions &bull; <span>CTA:</span> Book Now
+    </div>
+  </div>
   <div class="ad-pair">
-    <div class="feed"><img src="exports/ad10-1x1.png" alt="Broad Awareness 1:1"><div class="label">Feed 1080&times;1080</div></div>
-    <div class="story"><img src="exports/ad10-9x16.png" alt="Broad Awareness 9:16"><div class="label">Story 1080&times;1920</div></div>
+    <div>
+      <div class="ad-label">1:1 Feed (1080×1080)</div>
+      <div class="ad-frame-1x1">
+        <div class="ad-bg" style="background-image: url('images/Artificial_Intelligence.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.0) 0%, rgba(28,28,28,0.88) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 44px; color: white;">25+ EPIC<br>ADVENTURES.<br><span style="font-size: 52px;" class="text-gradient-purple">ONE MISSION.</span></div>
+          <div class="ad-subtext">The interactive gaming experience you've been looking for.<br>Choose your own adventure. Beat the clock. Win it all.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div>
+        </div>
+      </div>
+      <div class="ad-copy-section">
+        <div class="ad-copy-label">Primary Text</div>
+        <div class="ad-copy-text">More than mini golf. Better than the movies. This is Time Mission. 🎮<br><br>25+ interactive challenge rooms where you choose your own adventure. Puzzles, physical challenges, and brain-bending games — all under one roof.<br><br>Groups of 2-6. Perfect for friends, families, date nights, and birthdays.</div>
+        <div class="ad-copy-label" style="margin-top: 12px;">Headline</div>
+        <div class="ad-copy-headline">25+ Adventures. One Epic Mission.</div>
+      </div>
+    </div>
+    <div>
+      <div class="ad-label">9:16 Stories (1080×1920)</div>
+      <div class="ad-frame-9x16">
+        <div class="ad-bg" style="background-image: url('images/Private_Eye.jpg');"></div>
+        <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.92) 55%);"></div>
+        <div class="ad-logo">TIME MISSION</div>
+        <div class="ad-badge">Now Open</div>
+        <div class="ad-content">
+          <div class="ad-headline" style="font-size: 38px; color: white;">25+ EPIC<br>ADVENTURES.<br><span class="text-gradient-purple">ONE<br>MISSION.</span></div>
+          <div class="ad-subtext">Choose your adventure.<br>Beat the clock. Win it all.</div>
+          <div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="footer">
-  Time Mission &mdash; LOL Entertainment &middot; Generated with Claude Code &middot; Feb 2026
+<div style="text-align: center; padding: 60px; color: #444; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
+  Time Mission &bull; Meta Ad Creative &bull; 10 Sets &bull; February 2026<br>
+  <span style="color: #333;">Designed for review — ready for Figma buildout</span>
 </div>
 
 </body>
