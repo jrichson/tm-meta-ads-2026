@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TM Ad Export</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  :root {
+    --mission-black: #1C1C1C;
+    --time-white: #F3F1EE;
+    --pink: #FE3D82;
+    --purple: #9D5CED;
+    --orange-light: #F9A41A;
+    --orange-dark: #EF4B23;
+    --blue-dark: #1F4ABA;
+    --blue-light: #028BBF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--mission-black); overflow: hidden; }
+  .ad-frame {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  .ad-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .ad-overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .ad-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+  .ad-content-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .ad-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: white;
+    position: absolute;
+    z-index: 3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .ad-logo::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: white;
+    margin-top: 3px;
+  }
+  .ad-headline {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+  .ad-subtext {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: white;
+    opacity: 0.9;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .ad-cta {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    text-shadow: none;
+    align-self: flex-start;
+  }
+  .ad-cta-center { align-self: center; }
+  .ad-badge {
+    position: absolute;
+    z-index: 3;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .text-gradient-purple {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-orange {
+    background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-blue {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  /* 1:1 sizes */
+  .s1x1 .ad-content { padding: 60px; }
+  .s1x1 .ad-logo { font-size: 30px; top: 44px; left: 52px; }
+  .s1x1 .ad-logo::after { width: 75px; }
+  .s1x1 .ad-headline { font-size: 96px; }
+  .s1x1 .ad-subtext { font-size: 24px; margin-top: 20px; }
+  .s1x1 .ad-cta { margin-top: 36px; padding: 22px 52px; font-size: 26px; }
+  .s1x1 .ad-badge { top: 44px; right: 44px; font-size: 20px; padding: 12px 26px; }
+  /* 9:16 sizes */
+  .s9x16 .ad-content { padding: 60px; }
+  .s9x16 .ad-logo { font-size: 28px; top: 60px; left: 52px; }
+  .s9x16 .ad-logo::after { width: 70px; }
+  .s9x16 .ad-headline { font-size: 82px; }
+  .s9x16 .ad-subtext { font-size: 22px; margin-top: 20px; }
+  .s9x16 .ad-cta { margin-top: 36px; padding: 22px 52px; font-size: 24px; }
+  .s9x16 .ad-badge { top: 60px; right: 44px; font-size: 18px; padding: 10px 22px; }
+  /* Stars */
+  .stars { color: #F9A41A; font-size: 72px; letter-spacing: 8px; margin-bottom: 16px; }
+  .stars-sm { font-size: 48px; }
+  .review-text { font-family: 'Inter', sans-serif; font-style: italic; font-size: 26px; color: rgba(255,255,255,0.8); margin-top: 20px; max-width: 700px; line-height: 1.6; }
+  .review-text-sm { font-size: 22px; max-width: 500px; }
+  .stat { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 48px; color: white; margin-top: 24px; letter-spacing: 2px; }
+  .divider { width: 60px; height: 4px; margin: 20px 0; }
+</style>
+<script>
+const params = new URLSearchParams(window.location.search);
+const adId = params.get('ad') || '1';
+const fmt = params.get('fmt') || '1x1';
+const DB = '/Users/jeffersonrichardson/LOL Entertainment Dropbox/1 - TM';
+const PHL = `${DB}/05 - PHOTO & VIDEO/03 TM PHILLY/Philadelphia - October 2025`;
+const SEL = `${DB}/05 - PHOTO & VIDEO/TIME MISSION SELECT`;
+const OPS = `${DB}/05 - PHOTO & VIDEO/04 TM Ops Photos/00 - TOP 15 Pictures`;
+
+const ads = {
+  '1-1x1': { bg: `${PHL}/_Time-Mission_0001.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.85) 70%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline">YOUR CREW.<br><span class="text-gradient-purple">YOUR RULES.</span></div><div class="ad-subtext">25+ challenge rooms. Choose your own adventure.<br>Who's really the smartest in your group?</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div></div>` },
+  '1-9x16': { bg: `${PHL}/_Time-Mission_0020.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.85) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">25+ Rooms</div><div class="ad-content"><div class="ad-headline" style="font-size:82px;">YOUR<br>CREW.<br><span class="text-gradient-purple">YOUR<br>RULES.</span></div><div class="ad-subtext">Choose your own adventure.<br>Who's the smartest in your group?</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Now</div></div>` },
+  '2-1x1': { bg: `${PHL}/_Time-Mission_0040.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.9) 65%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:104px;">DATE NIGHT,<br><span class="text-gradient-orange">UPGRADED.</span></div><div class="ad-subtext">Skip the same old dinner. Challenge each other<br>through 25+ interactive rooms instead.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Book Your Date</div></div>` },
+  '2-9x16': { bg: `${PHL}/_Time-Mission_0010.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.3) 0%, rgba(28,28,28,0.0) 40%, rgba(28,28,28,0.9) 65%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline">DATE<br>NIGHT,<br><span class="text-gradient-orange">UPGRADED.</span></div><div class="ad-subtext">Skip dinner. Challenge each other<br>through 25+ rooms.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Book Your Date</div></div>` },
+  '3-1x1': { bg: `${SEL}/Time-Mission_Big-Bang.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.05) 0%, rgba(28,28,28,0.9) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline">YOUR NEXT<br><span class="text-gradient-purple">GAME NIGHT</span></div><div class="ad-subtext">One ticket. 25+ rooms. An entire afternoon<br>of family fun — no screens required.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Family Fun</div></div>` },
+  '3-9x16': { bg: `${SEL}/Time-Mission_Control-Room.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 35%, rgba(28,28,28,0.9) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">All Ages</div><div class="ad-content"><div class="ad-headline">YOUR<br>NEXT<br><span class="text-gradient-purple">GAME<br>NIGHT</span></div><div class="ad-subtext">25+ rooms. One ticket.<br>No screens required.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Book Family Fun</div></div>` },
+  '4-1x1': { bg: `${OPS}/Jungle_Temple.JPG`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.05) 0%, rgba(28,28,28,0.85) 65%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">Spring Break</div><div class="ad-content"><div class="ad-headline">SPRING BREAK<br><span class="text-gradient-blue">SORTED.</span></div><div class="ad-subtext">The kids will love 25+ challenge rooms.<br>You'll love not hearing "I'm bored."</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Plan Spring Break</div></div>` },
+  '4-9x16': { bg: `${OPS}/Pirates_Attack.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 35%, rgba(28,28,28,0.85) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">Spring Break</div><div class="ad-content"><div class="ad-headline">SPRING<br>BREAK<br><span class="text-gradient-blue">SORTED.</span></div><div class="ad-subtext">25+ rooms of family fun.<br>Zero screens required.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Plan Spring Break</div></div>` },
+  '5-1x1': { bg: `${OPS}/Server_Heist.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.9) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:80px;">THE OUTING THEY'LL<br><span class="text-gradient-blue">ACTUALLY<br>TALK ABOUT.</span></div><div class="ad-subtext">Not another trust-fall workshop.<br>Book 30 people in 3 clicks. We handle the rest.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Book Team Event</div></div>` },
+  '5-9x16': { bg: `${SEL}/Time-Mission_Control-Room.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">Team Building</div><div class="ad-content"><div class="ad-headline" style="font-size:68px;">THE OUTING<br>THEY'LL<br><span class="text-gradient-blue">ACTUALLY<br>TALK<br>ABOUT.</span></div><div class="ad-subtext">Book 30+ people in 3 clicks.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));">Book Team Event</div></div>` },
+  '6-1x1': { bg: `${PHL}/_Time-Mission_0030.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.05) 0%, rgba(28,28,28,0.9) 60%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:80px;">THE BIRTHDAY<br>THEY'LL <span class="text-gradient-purple">NEVER<br>FORGET.</span></div><div class="ad-subtext">Skip the restaurant. Throw a party<br>they'll talk about for months.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Plan the Party</div></div>` },
+  '6-9x16': { bg: `${SEL}/Time-Mission_Persian-0Palace.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.15) 0%, rgba(28,28,28,0.0) 35%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">Birthdays</div><div class="ad-content"><div class="ad-headline" style="font-size:72px;">THE<br>BIRTHDAY<br>THEY'LL<br><span class="text-gradient-purple">NEVER<br>FORGET.</span></div><div class="ad-subtext">Group packages available.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Plan the Party</div></div>` },
+  '7-1x1': { bg: `${SEL}/Time-Mission-Magma-Mayhem-1.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.05) 0%, rgba(28,28,28,0.85) 65%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:88px;">THINK<br>YOU'RE<br><span class="text-gradient-orange">SMART?</span></div><div class="ad-subtext">Only 12% of groups beat every room.<br>25+ challenge rooms. One mission. Will yours?</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Accept the Challenge</div></div>` },
+  '7-9x16': { bg: `${SEL}/Time-Mission_Magma_Mayhem-2.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">12% Win Rate</div><div class="ad-content"><div class="ad-headline" style="font-size:88px;">THINK<br>YOU'RE<br><span class="text-gradient-orange">SMART?</span></div><div class="ad-subtext">25 rooms say otherwise.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Accept the Challenge</div></div>` },
+  '8-1x1': { bg: `${OPS}/Glitch_Matrix.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.1) 0%, rgba(28,28,28,0.85) 65%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:72px;">NOT AN<br>ESCAPE ROOM.<br><span class="text-gradient-purple">SOMETHING<br>NEW.</span></div><div class="ad-subtext">Choose your own adventure through 25+<br>challenge rooms. Every path is different.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Discover Time Mission</div></div>` },
+  '8-9x16': { bg: `${OPS}/Lovecraft_Circle.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:72px;">NOT AN<br>ESCAPE<br>ROOM.<br><span class="text-gradient-purple">SOMETHING<br>NEW.</span></div><div class="ad-subtext">Choose your own adventure.<br>Every path is different.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Discover It</div></div>` },
+  '9-1x1': { bg: null, overlay: null, content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content ad-content-center"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="ad-headline" style="font-size:84px; text-align:center;"><span class="text-gradient-orange">4.8 STARS</span></div><div class="stat">10,000+ PLAYERS</div><div class="divider" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin: 20px auto;"></div><div class="review-text">"Best thing we've done in Philly all year. We're already planning our next visit."</div><div class="ad-cta ad-cta-center" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin-top: 36px;">Book Now</div></div>` },
+  '9-9x16': { bg: null, overlay: null, content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content ad-content-center"><div class="stars stars-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="ad-headline" style="font-size:72px; text-align:center;"><span class="text-gradient-orange">4.8<br>STARS</span></div><div class="stat">10,000+<br>PLAYERS</div><div class="divider" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin: 20px auto;"></div><div class="review-text review-text-sm">"Best thing we've done all year."</div><div class="ad-cta ad-cta-center" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark)); margin-top: 36px;">Book Now</div></div>` },
+  '10-1x1': { bg: `${SEL}/Time-Mission_Artificial_Intelligence.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.05) 0%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-content"><div class="ad-headline" style="font-size:76px;">25+ EPIC<br>ADVENTURES.<br><span class="text-gradient-purple">ONE MISSION.</span></div><div class="ad-subtext">Interactive gaming like you've never experienced.<br>Choose your own path. Beat the clock.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Start Your Mission</div></div>` },
+  '10-9x16': { bg: `${OPS}/Private_Eye.jpg`, overlay: 'linear-gradient(180deg, rgba(28,28,28,0.2) 0%, rgba(28,28,28,0.0) 30%, rgba(28,28,28,0.9) 55%)', content: `<div class="ad-logo">TIME MISSION</div><div class="ad-badge">Now Open</div><div class="ad-content"><div class="ad-headline" style="font-size:76px;">25+ EPIC<br>ADVENTURES.<br><span class="text-gradient-purple">ONE<br>MISSION.</span></div><div class="ad-subtext">Choose your own path.<br>Beat the clock.</div><div class="ad-cta" style="background: linear-gradient(135deg, var(--pink), var(--purple));">Start Your Mission</div></div>` },
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const key = `${adId}-${fmt}`;
+  const ad = ads[key];
+  if (!ad) { document.body.innerHTML = '<h1 style="color:red;padding:40px;">Ad not found: ' + key + '</h1>'; return; }
+  const sizeClass = fmt === '9x16' ? 's9x16' : 's1x1';
+  let html = `<div class="ad-frame ${sizeClass}">`;
+  if (ad.bg) html += `<div class="ad-bg" style="background-image: url('${ad.bg}');"></div>`;
+  if (ad.overlay) html += `<div class="ad-overlay" style="background: ${ad.overlay};"></div>`;
+  html += ad.content;
+  html += '</div>';
+  document.body.innerHTML = html;
+});
+</script>
+</head>
+<body></body>
+</html>
